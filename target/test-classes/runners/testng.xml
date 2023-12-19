@@ -1,0 +1,16 @@
+
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="DataDrivenTest">
+  <test thread-count="5" name="LoginTest">
+    <classes>
+      <class name="test.java.testcases.TestCase1"></class>
+    </classes>
+  </test> <!-- Test -->
+
+
+  <test thread-count="5" name="LoginTest">
+    <classes>
+      <class name="test.java.testcases.TestCase2"></class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
