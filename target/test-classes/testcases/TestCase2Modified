@@ -1,0 +1,47 @@
+package testcases;
+
+import base.TestBase;
+import org.openqa.selenium.By;
+import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+public class TestCase2 extends TestBase {
+    @Test
+    public void TransactionParser() throws InterruptedException {
+        try {
+            // Navigate to the Blockstream page
+            String url = "https://blockstream.info/block/000000000000000000076c036ff5119e5a5a74df77abf64203473364509f7732";
+            driver.get(url);
+
+            // Find all transactions displayed on the page
+            List<WebElement> transactions = driver.findElements(By.xpath(OR.getProperty("transactions")));
+
+            for (WebElement transaction : transactions) {
+                // Find inputs and outputs within the transaction
+                List<WebElement> inputs = transaction.findElements(By.cssSelector("your_selector_for_inputs"));
+                List<WebElement> outputs = transaction.findElements(By.cssSelector("your_selector_for_outputs"));
+
+                // Check if there are exactly 1 input and 2 outputs
+                if (inputs.size() == 1 && outputs.size() == 2) {
+                    // Print the transaction hash
+                    WebElement transactionHash = transaction.findElement(By.cssSelector("your_selector_for_transaction_hash"));
+                    System.out.println("Transaction Hash: " + transactionHash.getText());
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close the browser
+            driver.quit();
+        }
+    }
+
+    }
+
+
